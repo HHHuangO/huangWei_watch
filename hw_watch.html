@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            /* overflow-x: hidden */
+        }
+
+        .s2 {
+            position: relative;
+            width: 100%;
+            height: 200vh;
+        }
+
+        .s2-bg {
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .s2-bg video {
+            -o-object-fit: cover;
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+
+        .s2-cover {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: black;
+            opacity: 0.8;
+            z-index: 2;
+            top: 0;
+            left: 0;
+        }
+
+        .s2-title {
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            opacity: 1;
+            z-index: 3;
+            font-size: 25px;
+            line-height: 70px;
+            /* transition: transform 0.2s ease-out; */
+            will-change: opacity, transform;
+
+
+        }
+
+
+        .s6 {
+            /* position: relative; */
+            /* margin: 0 auto; */
+            height: 200vh;
+            width: 100%;
+            /* z-index:3 */
+            /* overflow: hidden; */
+        }
+
+        .s6_sticky {
+            position: sticky;
+            top: 0;
+            height: 120vh;
+        }
+
+        .s2-sticky {
+            position: sticky;
+            top: 0;
+            /* overflow: hidden; */
+
+
+        }
+
+        .s6-title {
+            text-align: center;
+        }
+
+        .s6-title h3 {
+            font-size: 25px;
+        }
+
+        .s6-title p {
+            margin: 3vh 0 6vh 0;
+            font-size: 2vh;
+        }
+
+        .s6-change-title {
+            margin: 0 auto;
+            display: flex;
+            width: 60%;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .s6-change-title1 {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+
+        }
+
+        .s6-change-title1 h4 {
+            color: rgb(62, 99, 48);
+            font-size: 4vh;
+        }
+
+        .s6-change-title2 {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            margin-top: 2vh;
+            opacity: 0;
+
+        }
+
+        .s6-change-title2 h4 {
+            color: rgb(173, 126, 76);
+            font-size: 4vh;
+        }
+
+        .s6-bg-img-1 {
+            width: 600px;
+            height: 700px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            z-index: 2;
+            /* transition: opacity 0.5s linear; */
+            will-change: opacity, transform;
+        }
+
+        .s6-bg-img-1.active {
+            opacity: 0;
+            transition: .5s linear;
+            will-change: opacity, transform;
+        }
+
+        .s6-bg-img-2 {
+            width: 600px;
+            height: 700px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transform: translateY(-40%);
+            z-index: 3;
+            opacity: 0;
+            /* transition: opacity 0.5s linear; */
+            will-change: opacity, transform;
+        }
+
+        .s6-bg-img-2.active {
+            opacity: 1;
+            transition: 1s linear;
+            will-change: opacity, transform;
+        }
+
+
+
+        @media screen and (max-width: 600px) {
+            body {
+                overflow-x: hidden;
+            }
+
+
+
+            .s2-sticky {
+                width: 100vw;
+                height: 120vh;
+
+            }
+
+            .s2-title {
+                font-size: 12px;
+                line-height: 1.5;
+                font-weight: 200;
+
+            }
+
+            .s2,
+            .s2-bg,
+            .s2-bg video {
+                width: 100%;
+                height: 100%;
+            }
+
+            .s2-bg video {
+                object-fit: cover;
+            }
+
+            .s6-change-title {
+                width: 90%;
+            }
+
+            .s6-change-title1 h4 {
+
+                font-size: 18px;
+            }
+
+            .s6-change-title2 h4 {
+
+                font-size: 18px;
+            }
+
+            .s6-bg-img-2 {
+                height: 400px;
+                width: 100%;
+            }
+
+            .s6-bg-img-1 {
+                height: 400px;
+                width: 100%;
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div style="height: 100vh;background-color: blue;">1</div>
+        <div style="height: 100vh;background-color: pink;">2</div>
+        <div style="height: 100vh;background-color: yellow;">3</div>
+        <div style="height: 100vh;background-color: red;">4</div>
+        <div class="s2">
+            <div class="s2-sticky " id="s2_sticky">
+                <div class="s2-bg">
+                    <video webkit-playsinline playsinline x5-video-player-type="h5" muted autoplay loop
+                        poster="/content/dam/huawei-cbg-site/common/mkt/pdp/wearables/watch-gt4/watch-gt4-g/video/huawei-watch-gt4-fashion-forward-1.jpg">
+                        <source type="video/mp4"
+                            src="https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/wearables/watch-gt4/watch-gt4-g/video/huawei-watch-gt4-fashion-forward-1.mp4">
+
+                    </video>
+
+                </div>
+                <!-- 视频遮盖层 -->
+                <div class="s2-cover"></div>
+                <div class="s2-title">
+                    <h1>
+                        Fashion, never stops.
+                        <br>
+                        Pushing boundaries through technology.
+
+                        <br>
+                        To cross, to sport, to explore.
+                        <br>
+                        Huawei Wearable.
+
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div style="margin-bottom: 30px;"></div>
+        <div class="s6 ">
+            <div class="s6_sticky" id="s6_sticky">
+                <div class="s6-title">
+                    <h3>Slimmed Down, Spaced Out</h3>
+                    <p>With its airy-light form and 13% higher screen-to-body ratio,2 bordered by a thin bezel, this
+                        watch
+                        gives
+                        you the fit you crave and a view to savour.</p>
+                </div>
+                <div class="s6-change-title">
+                    <div class="s6-change-title1">
+                        <div>
+                            <h4>326</h4>
+                            <p>PPI</p>
+                        </div>
+                        <div>
+                            <h4>1.43
+                                <span>-inch</span>
+                            </h4>
+                            <p>AMOLED screen</p>
+                        </div>
+                        <div>
+                            <h4>466 × 466</h4>
+                            <p>pixels</p>
+                        </div>
+                    </div>
+                    <div class="s6-change-title2">
+                        <div>
+                            <h4>352</h4>
+                            <p> PPI</p>
+                        </div>
+                        <div>
+                            <h4>1.32
+                                <span>-inch</span>
+                            </h4>
+                            <p>AMOLED screen</p>
+                        </div>
+                        <div>
+                            <h4>466 × 466</h4>
+                            <p> pixels</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="s6-bg" style=" margin-top: 5vh; ;">
+                    <div class="s6-bg1">
+                        <img class="s6-bg-img-1" src="./imges/huawei-watch-gt4-bigger-screen-1@2x.webp" alt="">
+                    </div>
+                    <div class="s6-bg2">
+                        <img class="s6-bg-img-2" src="./imges/huawei-watch-gt4-bigger-screen-2@2x.webp" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="height: 200vh;z-index:3; background-color:red;"></div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script>
+        let s2_title = document.querySelector(".s2-title");
+        let s2_sticky = document.getElementById("s2_sticky");
+        let s6_sticky = document.getElementById("s6_sticky");
+        let s6_bg_img1 = document.querySelector(".s6-bg-img-1");
+        let s6_bg_img2 = document.querySelector(".s6-bg-img-2");
+        let previousTotalMovement = 0;
+        let previousInitialPosition = 0;
+        let lastScrollTop = 0;
+        let temp_s2_title_position = 0;
+
+        document.addEventListener("scroll", (e) => {
+            let document_scroll_top = e.target.documentElement.scrollTop
+            let document_scroll_height = e.target.documentElement.scrollHeight;
+            let scrollPercentage = document_scroll_top / document_scroll_height;
+            let relativeValue = scrollPercentage * window.innerHeight;
+            let s2_sticky_position = s2_sticky.getBoundingClientRect().top;
+            let s2_title_position = s2_title.getBoundingClientRect();
+            let s6_sticky_position = s6_sticky.getBoundingClientRect().top;
+            let s6_bg_img1_position = s6_bg_img1.getBoundingClientRect().top;
+            let s6_bg_img2_position = s6_bg_img2.getBoundingClientRect().top;
+
+            if (s2_sticky_position > 0) {
+                temp_s2_title_position = s2_title_position.top;
+            }
+
+            if (s2_sticky_position == 0) {
+                scrolled = relativeValue;
+                // scrolled = - (scrolled + temp_s2_title_position);         
+                // console.log("fuck2，" +( (scrolled)));         
+                // s2_title.style.transform = 'translate(-50%, -50%) translate3d(0px, ' + (relativeValue)*0.6 + 'px, 0px)';
+                gsap.registerPlugin(ScrollTrigger);
+                let t_s2 = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".s2-sticky ",
+                        start: "top",
+                        end: "bottom 100%",
+                        scrub: true,
+                        // markers: true,
+                        ease: "line",
+                    }
+                })
+                    .to(".s2-cover", 1, {
+                        autoAlpha: 0
+                    }, "-=1"
+
+                    )
+                    .to(".s2-title", 1, {  
+                        y: "-50vh", 
+                        autoAlpha: 0  
+                    }, "-=1");
+
+
+
+            }
+
+            // s6 初始位置，转换为像素值
+            let initialPosition = -0.45 * s6_bg_img2.offsetHeight;
+            let scroll_diff = s6_bg_img2_position - s6_bg_img1_position;
+            let totalMovement = scroll_diff - initialPosition;  //总移动距离
+
+
+            // 用于存储totalMovement的前一个值
+            if (s6_sticky_position > 0) {
+
+                previousInitialPosition = initialPosition;
+                previousTotalMovement = totalMovement;  // 在计算新的totalMovement之前，先保存旧的值
+                totalMovement = scroll_diff - initialPosition;  // 计算总移动距离
+
+            } else if (s6_sticky_position == 0) {
+                totalMovement = previousTotalMovement;  // 如果s6_sticky_position等于0，那么totalMovement就设为前一个值
+
+                initialPosition = previousInitialPosition
+            } else if (s6_sticky_position < 0) {
+                totalMovement = 0
+            }
+
+            if (s6_sticky_position == 0) {
+
+                // 滚动到指定的位置
+                gsap.registerPlugin(ScrollTrigger);
+                let t_s6 = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".s6_sticky",
+                        start: "top top",
+                        end: "bottom 100%",
+                        scrub: true,
+                        // markers: true,
+                        ease: "liner",
+                    }
+                })
+                    .to(".s6-change-title2", 1, {
+                        y: "-5vh",
+                        autoAlpha: 1
+                    }, "-=1")
+                    .to(".s6-change-title1", 0.4, {
+                        y: "-3vh",
+                        autoAlpha: 0
+                    },
+                        "-=1"
+                    )
+
+                    .to(".s6-bg-img-1",
+                        0.4, {
+                        autoAlpha: 0,
+                    }, "-=1")
+                    .to(".s6-bg-img-2", 1, {
+                        // y:  "-70vh",
+
+                        y: -totalMovement + "px",
+                        autoAlpha: 1,
+                    }, "-=1");
+            }
+
+        });
+
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>
